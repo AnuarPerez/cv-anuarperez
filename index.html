@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CV - Anuar de Jesús Pérez Villadiego</title>
+  <link rel="icon" href="https://i.ibb.co/ZzLQMDfY/desarrollo-web.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    :root{
+      --bg:#05060a;
+      --card:#0b1020;
+      --accent1:#6ee7b7;
+      --accent2:#7dd3fc;
+      --glass: rgba(255,255,255,0.04);
+      --muted: #98a0b3;
+      --glass-border: rgba(255,255,255,0.06);
+      --radius:16px;
+      --maxw:980px;
+      --text:#e6eef8;
+      --focus: rgba(124, 211, 252, 0.18);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(34,197,94,0.06), transparent),
+      radial-gradient(900px 500px at 90% 90%, rgba(96,165,250,0.04), transparent),
+      var(--bg); color:var(--text);overflow:hidden}
+    /* ---------- LOADER ---------- */
+    #loader{
+      position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;
+      background:linear-gradient(180deg,#020617cc,#000000ee);transition:opacity .9s ease;
+    }
+    #loader.fade-out{opacity:0;pointer-events:none}
+    .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:0.28;mix-blend-mode:screen;pointer-events:none}
+    .orb.l1{width:520px;height:520px;left:-160px;top:-180px;background:linear-gradient(135deg,var(--accent1),transparent)}
+    .orb.l2{width:380px;height:380px;right:-120px;bottom:-140px;background:linear-gradient(135deg,var(--accent2),transparent)}
+    .loader-inner{
+      position:relative;z-index:5;max-width:880px;width:calc(100% - 48px);padding:28px;border-radius:14px;
+      border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);
+      display:flex;flex-direction:column;align-items:center;gap:18px;
+      background:linear-gradient(180deg, rgba(6,10,20,0.6), rgba(6,10,20,0.25));
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    .loader-logo{font-family:'Inter',sans-serif;color:var(--accent1);font-weight:700;font-size:18px;letter-spacing:0.6px}
+    .console-lines{font-family:'Roboto Mono',monospace;color:var(--muted);font-size:14px;line-height:1.6;width:100%;text-align:left;min-height:80px}
+    .console-line{opacity:0;transform:translateY(6px);transition:opacity .32s ease, transform .32s ease}
+    .typing-wrap{width:100%;display:flex;align-items:center;justify-content:center}
+    .typing {
+      font-family:'Roboto Mono',monospace;color:var(--accent2);font-size:18px;
+      border-right:2px solid var(--accent2);white-space:nowrap;overflow:hidden;
+      max-width:100%;text-align:center;
+    }
+    /* ---------- MAIN CV ---------- */
+    #main{opacity:0;filter:blur(10px);transition:opacity .9s ease, filter .9s ease;min-height:100vh}
+    #main.show{opacity:1;filter:blur(0);overflow:auto}
+    .wrap{max-width:var(--maxw);margin:48px auto;padding:28px;border-radius:20px;
+          background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+          box-shadow:0 10px 40px rgba(2,6,23,0.7);position:relative;overflow:hidden}
+    .wrap::after{content:"";position:absolute;inset:-20%;background:
+      radial-gradient(600px 200px at 10% 10%, rgba(78,231,183,0.03), transparent),
+      radial-gradient(500px 180px at 90% 90%, rgba(88,198,255,0.02), transparent);pointer-events:none}
+    header{display:flex;align-items:center;gap:18px;z-index:2}
+    .avatar{width:96px;height:96px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:var(--accent2);border:1px solid var(--glass-border);transition:box-shadow .35s ease, transform .35s ease;overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .avatar:hover{box-shadow:0 10px 30px rgba(88,198,255,0.12); transform:translateY(-4px)}
+    h1{margin:0;font-size:20px;color:var(--accent2)}
+    p.lead{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:22px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;border:1px solid var(--glass-border);transition:transform .28s ease, box-shadow .28s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(88,198,255,0.06)}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .section-title h3{margin:0;font-size:14px;color:var(--accent1)}
+    .muted{color:var(--muted);font-size:13px}
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:8px 12px;border-radius:999px;border:1px solid var(--glass-border);
+      font-size:13px;color:var(--muted);position:relative;overflow:hidden;cursor:default;
+      transition:transform .18s ease,color .18s ease,box-shadow .25s ease;
+    }
+    .chip::after{
+      content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(124,211,252,0.10), rgba(110,231,183,0.08));
+      opacity:0;transform:translateX(-20%);transition:all .32s ease;pointer-events:none;
+    }
+    .chip:hover{
+      transform:translateY(-6px) scale(1.02); color: #fff; box-shadow:0 10px 30px rgba(88,198,255,0.08);
+    }
+    .chip:hover::after{opacity:1;transform:translateX(0)}
+    .project{padding:12px;border-radius:10px;margin-bottom:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);transition:transform .28s ease,box-shadow .28s ease}
+    .project h4{margin:0 0 6px;color:var(--accent2)}
+    .project:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 14px 40px rgba(88,198,255,0.06)}
+    .impact{font-size:13px;color:var(--accent1);font-weight:600}
+    .timeline{position:relative;padding-left:18px}
+    .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent1),var(--accent2));opacity:0.5;border-radius:2px}
+    .time-item{position:relative;padding:8px 12px 8px 22px;margin-bottom:8px}
+    .time-item::before{content:'';position:absolute;left:-6px;top:12px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff, var(--accent1));box-shadow:0 0 10px var(--accent1)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#041022;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .15s ease, box-shadow .2s}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(88,198,255,0.12)}
+    footer{margin-top:18px;color:var(--muted);font-size:13px;display:flex;justify-content:center;align-items:center;text-align:center;padding:10px 0}
+    /* REVEAL ANIMATIONS */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+    /* ---------- MODAL EXACTO COMO LA IMAGEN ---------- */
+    #contactModal{
+      position:fixed;inset:0;background:rgba(5,6,10,0.92);backdrop-filter:blur(12px);
+      display:flex;align-items:center;justify-content:center;z-index:9999;
+      opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s ease;
+      padding:16px;
+    }
+    #contactModal.show{opacity:1;visibility:visible}
+    .modal-content{
+      background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:20px;
+      padding:28px 24px;width:100%;max-width:340px;position:relative;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);text-align:center;
+      backdrop-filter:blur(10px);
+    }
+    .modal-title{
+      color:var(--accent1);font-size:18px;font-weight:700;margin-bottom:28px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .modal-close{
+      position:absolute;top:16px;right:16px;background:transparent;border:none;
+      font-size:22px;color:#7dd3fc;cursor:pointer;width:32px;height:32px;
+      display:flex;align-items:center;justify-content:center;border-radius:50%;
+      transition:background .2s;
+    }
+    .modal-close:hover{background:rgba(125,211,252,0.15)}
+    .contact-links{display:flex;flex-direction:column;gap:18px}
+    .contact-item{
+      display:flex;align-items:center;gap:14px;color:var(--text);text-decoration:none;font-size:14px;
+      padding:8px 0;transition:color .2s;
+    }
+    .contact-item svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;flex-shrink:0}
+    .contact-item span{flex:1;text-align:left}
+    .contact-item:hover{color:var(--accent2)}
+    /* HIDE ON PRINT */
+    .no-print { display: block; }
+    @media print { .no-print { display: none !important; } }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div id="loader" aria-hidden="false" role="status" aria-live="polite">
+    <div class="orb l1"></div>
+    <div class="orb l2"></div>
+    <div class="loader-inner" aria-hidden="false">
+      <div class="loader-logo">INICIANDO VISTA DEL PERFIL</div>
+      <div class="console-lines" aria-hidden="true">
+        <div class="console-line">Procesando información...</div>
+        <div class="console-line">Cargando módulos de interfaz...</div>
+        <div class="console-line">Verificando adaptadores de red...</div>
+      </div>
+      <div class="typing-wrap" aria-hidden="true">
+        <div id="typing" class="typing" style="width:0"></div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL EXACTO -->
+  <div id="contactModal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar modal">×</button>
+      <div class="modal-title" id="modalTitle">Contacto</div>
+      <div class="contact-links">
+        <a href="mailto:adjperez2003@gmail.com" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>adjperez2003@gmail.com</span>
+        </a>
+        <a href="tel:+573017738791" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>+57 301 773 8791</span>
+        </a>
+        <a href="https://wa.me/573017738791?text=¡Hola%20Anuar!%20Te%20contacto%20desde%20tu%20CV%20digital." class="contact-item" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://anuarperez.github.io/portafolio-anuarperez/" class="contact-item" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+          <span>Portafolio Web</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- MAIN CV -->
+  <main id="main">
+    <div class="wrap" id="cvContent">
+      <header>
+        <!-- AVATAR CON TU FOTO -->
+        <div class="avatar">
+          <img src="https://i.ibb.co/V0mFBnS2/Imagen-de-Whats-App-2025-11-04-a-las-19-07-07-acf8878c.jpg" alt="Anuar Pérez">
+        </div>
+        <div>
+          <h1>Anuar de Jesús Pérez Villadiego</h1>
+          <p class="lead">Desarrollador de Software | AppSheet Developer | Analista de Datos | Asistente Virtual</p>
+          <p class="muted">Corozal, Sucre – Colombia</p>
+        </div>
+        <div class="no-print" style="margin-left:auto">
+          <button class="btn" id="contactBtn">Contactar</button>
+        </div>
+      </header>
+      <div class="grid" style="margin-top:26px">
+        <main class="card reveal">
+          <section>
+            <div class="section-title"><h3>Perfil Profesional</h3><span class="muted">Resumen</span></div>
+            <p>Tecnólogo en Análisis y Desarrollo de Software con formación en Asistencia Virtual y Análisis de Datos. Experiencia en gestión de información, automatización de procesos y desarrollo de aplicaciones personalizadas. Proactivo, responsable y orientado a resultados.</p>
+          </section>
+          <section style="margin-top:18px" class="reveal">
+            <div class="section-title"><h3>Experiencia</h3><span class="muted">Último puesto</span></div>
+            <div class="timeline">
+              <div class="time-item">
+                <strong>Auxiliar de Flota</strong> – Logística Integral Consultoría y Servicios S.A.S <span class="muted">(2024 – 2025)</span>
+                <div class="muted">Elaboración de reportes e indicadores; seguimiento de mantenimientos; comunicación con conductores y mecánicos.</div>
+                <ul style="margin:8px 0 0 0;color:var(--muted);font-size:14px">
+                  <li>Desarrollo de la aplicación “Reporte de Novedades” en AppSheet para registro y seguimiento en tiempo real.</li>
+                  <li>Implementación y gestión del sistema de Inventario – EPP para control de elementos de protección.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section style="margin-top:18px" class="projects reveal">
+            <div class="section-title"><h3>Proyectos Destacados</h3><span class="muted">Soluciones desarrolladas</span></div>
+            <div class="project" tabindex="0">
+              <h4>Reporte de Novedades – AppSheet</h4>
+              <div class="muted">App para optimizar la comunicación entre el área de flota y el personal técnico.</div>
+              <p class="impact">Impacto: Reducción del tiempo de acción y solución de novedades mecánicas.</p>
+            </div>
+            <div class="project" tabindex="0">
+              <h4>Inventario – EPP (AppSheet)</h4>
+              <div class="muted">Sistema para la gestión de elementos de protección personal.</div>
+              <p class="impact">Impacto: Mejor control y contabilidad de los EPP.</p>
+            </div>
+          </section>
+          <section style="margin-top:18px" class="reveal">
+            <div class="section-title"><h3>Formación</h3><span class="muted">Educación y cursos</span></div>
+            <ul style="margin:0;padding-left:18px;color:var(--muted)">
+              <li>Bachiller Académico – Institución Educativa Las Peñas (2021)</li>
+              <li>Tecnólogo en Análisis y Desarrollo de Software – SENA</li>
+              <li>Curso de Excel – Santander Open Academy (2025)</li>
+              <li>Diplomado: Asistente Virtual con Enfoque en Análisis de Datos – Proyecto Grow Up (2025)</li>
+            </ul>
+          </section>
+        </main>
+        <aside class="card reveal">
+          <section class="reveal">
+            <div class="section-title"><h3>Habilidades</h3><span class="muted">Competencias clave</span></div>
+            <div class="skills">
+              <span class="chip">Gestión de datos</span>
+              <span class="chip">AppSheet</span>
+              <span class="chip">Excel avanzado</span>
+              <span class="chip">Google Workspace</span>
+              <span class="chip">Comunicación</span>
+              <span class="chip">Análisis de información</span>
+              <span class="chip">Mejora de procesos</span>
+            </div>
+          </section>
+          <section style="margin-top:18px" class="reveal">
+            <div class="section-title"><h3>Contacto</h3><span class="muted">Conecta conmigo</span></div>
+            <p class="muted">Email: adjperez2003@gmail.com</p>
+            <p class="muted">Teléfono: 301 773 8791</p>
+            <p class="muted">Portafolio: <a href="https://anuarperez.github.io/portafolio-anuarperez/" target="_blank" style="color:var(--accent2);text-decoration:none">anuarperez.github.io</a></p>
+          </section>
+          <section style="margin-top:18px" class="reveal">
+            <div class="section-title"><h3>Idiomas</h3><span class="muted">Habilidades lingüísticas</span></div>
+            <p>Español</p>
+          </section>
+          <section style="margin-top:18px" class="reveal">
+            <div class="section-title"><h3>Disponibilidad</h3><span class="muted">Modalidad</span></div>
+            <p class="muted">Trabajo remoto / freelance. Enfoque en resultados.</p>
+          </section>
+        </aside>
+      </div>
+      <footer class="reveal">© Anuar de Jesús Pérez Villadiego</footer>
+    </div>
+  </main>
+  <script>
+    /* LOADER + TYPING */
+    (function(){
+      const typingEl = document.getElementById('typing');
+      const text = "Bienvenido(a) al perfil digital de Anuar Pérez…";
+      const speed = 34; let i = 0;
+      const lines = document.querySelectorAll('.console-line');
+      lines.forEach(n => { n.style.opacity = '0'; n.style.transform = 'translateY(6px)'; });
+      let li = 0;
+      function showLine(){
+        if(li < lines.length){
+          lines[li].style.opacity = '1'; lines[li].style.transform = 'translateY(0)'; li++;
+          setTimeout(showLine, 420);
+        } else setTimeout(startTyping, 300);
+      }
+      function startTyping(){
+        function step(){
+          i++;
+          typingEl.textContent = text.slice(0,i) + (i%2===0 ? '|' : '');
+          if(i < text.length) setTimeout(step, speed);
+          else { typingEl.textContent = text; setTimeout(finish, 1000); }
+        }
+        step();
+      }
+      function finish(){
+        document.getElementById('loader').classList.add('fade-out');
+        setTimeout(()=> {
+          document.getElementById('loader').style.display = 'none';
+          const main = document.getElementById('main');
+          main.classList.add('show');
+          document.body.style.overflow = 'auto';
+          revealOnScroll();
+        }, 900);
+      }
+      window.addEventListener('load', showLine);
+    })();
+    /* REVEAL ON SCROLL */
+    function revealOnScroll(){
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('show');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    }
+    /* MODAL */
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('contactModal');
+      const btn = document.getElementById('contactBtn');
+      const closeBtn = document.getElementById('closeModal');
+      function openModal(){ modal.classList.add('show'); document.body.style.overflow = 'hidden'; closeBtn.focus(); }
+      function closeModal(){ modal.classList.remove('show'); document.body.style.overflow = 'auto'; btn.focus(); }
+      btn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
+    });
+    /* PDF GENERATOR */
+    window.generatePDF = function() {
+      const element = document.getElementById('cvContent');
+      const clone = element.cloneNode(true);
+      const noPrint = clone.querySelector('.no-print');
+      if (noPrint) noPrint.remove();
+      clone.style.transform = 'scale(0.76)';
+      clone.style.transformOrigin = 'top left';
+      clone.style.width = '1280px';
+      clone.style.padding = '30px';
+      document.body.appendChild(clone);
+      const opt = {
+        margin: 0,
+        filename: 'CV-Anuar-Perez.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, width: 1280, height: 1810, windowWidth: 1280, backgroundColor: null },
+        jsPDF: { unit: 'px', format: [1280, 1810], orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(clone).save().then(() => {
+        document.body.removeChild(clone);
+      });
+    };
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 'p') { e.preventDefault(); generatePDF(); }
+    });
+  </script>
+</body>
+</html>
