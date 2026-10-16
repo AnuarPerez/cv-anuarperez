@@ -73,7 +73,67 @@
     .contact-item{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--glass-border);font-size:14px}
     .contact-item:last-child{border:none}
     .contact-item:hover{color:var(--accent2)}
-    @media print { .no-print { display: none !important; } #main { overflow: visible; height: auto; } }
+
+    /* ESTILOS EXCLUSIVOS PARA LA PLANTILLA HARVARD OCULTA EN PANTALLA */
+    #harvardTemplate {
+      display: none;
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Times New Roman', Times, serif;
+      width: 800px;
+      padding: 35px 45px;
+      line-height: 1.35;
+    }
+    #harvardTemplate h2 {
+      font-size: 20px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 4px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    #harvardTemplate .h-contact {
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 12px;
+      color: #222;
+    }
+    #harvardTemplate .h-section {
+      font-size: 12.5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-bottom: 1px solid #000;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      padding-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    #harvardTemplate p, #harvardTemplate li {
+      font-size: 11.5px;
+      text-align: justify;
+    }
+    #harvardTemplate ul {
+      margin-left: 16px;
+      margin-top: 2px;
+    }
+    #harvardTemplate li {
+      margin-bottom: 2px;
+    }
+    #harvardTemplate .h-item-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    #harvardTemplate .h-item-sub {
+      display: flex;
+      justify-content: space-between;
+      font-style: italic;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
   </style>
 </head>
 <body>
@@ -95,6 +155,7 @@
     </div>
   </div>
 
+  <!-- VISTA WEB NORMAL (MODERNA Y OSCURA) -->
   <main id="main">
     <div class="wrap" id="cvContent">
       <header>
@@ -108,11 +169,11 @@
           <div class="badges" style="margin-top:8px">
             <span class="badge">HTML5 · CSS3 · JS</span>
             <span class="badge blue">PHP · MySQL</span>
-            <span class="badge" style="border-color:rgba(125,211,252,.3);color:var(--accent2);background:rgba(125,211,252,.05)">Desarrollo Asistido por IA</span>
+            <span class="badge blue">Desarrollo Asistido por IA</span>
           </div>
         </div>
         <div class="header-actions no-print">
-          <button class="btn btn-ghost" onclick="generatePDF()">⬇ PDF</button>
+          <button class="btn btn-ghost" onclick="generateHarvardPDF()">⬇ PDF</button>
           <button class="btn btn-primary" onclick="document.getElementById('contactModal').classList.add('show')">Contactar</button>
         </div>
       </header>
@@ -221,7 +282,7 @@
           <div class="card">
             <div class="section-title"><h3>Contacto</h3></div>
             <p class="muted" style="margin-bottom:4px">📧 adjperez2003@gmail.com</p>
-            <p class="muted">📱 +57 301 773 8791</p>
+            <p class="muted">📱 301 773 8791</p>
           </div>
 
           <div class="card">
@@ -242,6 +303,90 @@
       </footer>
     </div>
   </main>
+
+  <!-- PLANTILLA HARVARD OCULTA EN PANTALLA (EXCLUSIVA PARA EL PDF ATS) -->
+  <div id="harvardTemplate">
+    <h2>Anuar de Jesús Pérez Villadiego</h2>
+    <div class="h-contact">
+      Corozal, Sucre, Colombia | +57 301 773 8791 | adjperez2003@gmail.com
+    </div>
+
+    <div class="h-section">Perfil Profesional</div>
+    <p>
+      Desarrollador web junior especializado en construir interfaces adaptadas a móviles, tabletas y computadores. Combino HTML, CSS y JavaScript con backend en PHP y MySQL para crear sistemas completos en producción. Aplico metodologías ágiles y desarrollo asistido por IA para optimizar procesos y garantizar entregas eficientes.
+    </p>
+
+    <div class="h-section">Experiencia Laboral</div>
+    <div class="h-item-header">
+      <span>Desarrollador Web Full-Stack (Freelance)</span>
+      <span>Feb 2026 – Actualidad</span>
+    </div>
+    <div class="h-item-sub">
+      <span>Proyectos Independientes</span>
+      <span>Remoto</span>
+    </div>
+    <ul>
+      <li>Desarrollo integral de plataformas corporativas para gestión de flotas y control de talleres, incluyendo Fleet Maint y Fleet360 (PHP, JS, MySQL).</li>
+      <li>Implementación de flujos mediante desarrollo asistido por IA para acelerar la lógica de negocio y depuración de código.</li>
+      <li>Migración exitosa de registros históricos desde hojas de cálculo a bases de datos relacionales sin pérdida de información.</li>
+      <li>Implementación de e-commerce Carpioli en WordPress con pasarelas de pagos online.</li>
+    </ul>
+
+    <div class="h-item-header" style="margin-top:6px;">
+      <span>Auxiliar de Flota y Datos</span>
+      <span>Ago 2024 – Feb 2025</span>
+    </div>
+    <div class="h-item-sub">
+      <span>Logística Integral Consultoría y Servicios S.A.S</span>
+      <span>Corozal, Colombia</span>
+    </div>
+    <ul>
+      <li>Diseño e implementación autónoma de app en AppSheet para digitalizar registro de novedades mecánicas.</li>
+      <li>Gestión de disponibilidad de vehículos y reportes estratégicos con Excel Avanzado.</li>
+    </ul>
+
+    <div class="h-section">Proyectos Destacados</div>
+    <div class="h-item-header">
+      <span>Fleet Maint (En Producción)</span>
+    </div>
+    <ul>
+      <li>Sistema avanzado de gestión de novedades de flota multirol. Impacto: Control centralizado de SLA, notificaciones automáticas y dashboards en tiempo real.</li>
+    </ul>
+
+    <div class="h-item-header" style="margin-top:4px;">
+      <span>Fleet360 (En Producción)</span>
+    </div>
+    <ul>
+      <li>Plataforma base corporativa para control operativo y seguimiento de talleres. Impacto: Optimización del flujo inicial de novedades y trazabilidad vehicular.</li>
+    </ul>
+
+    <div class="h-item-header" style="margin-top:4px;">
+      <span>Carpioli (En Producción)</span>
+    </div>
+    <ul>
+      <li>E-commerce con integración de pasarelas de pagos. Impacto: Automatización de ventas digitales y optimización de la experiencia de compra.</li>
+    </ul>
+
+    <div class="h-section">Educación y Formación</div>
+    <div class="h-item-header">
+      <span>Tecnólogo en Análisis y Desarrollo de Software – SENA</span>
+      <span>2025</span>
+    </div>
+    <div class="h-item-header" style="margin-top:2px;">
+      <span>Curso de Excel Avanzado – Santander Open Academy</span>
+      <span>2025</span>
+    </div>
+    <div class="h-item-header" style="margin-top:2px;">
+      <span>Bachiller Académico – Institución Educativa Las Peñas</span>
+      <span>2021</span>
+    </div>
+
+    <div class="h-section">Habilidades Técnicas y Competencias</div>
+    <p><strong>Frontend:</strong> HTML5, CSS3, JavaScript, Responsive Design.</p>
+    <p><strong>Backend & Datos:</strong> PHP, MySQL, Excel Avanzado.</p>
+    <p><strong>Herramientas & IA:</strong> Desarrollo Asistido por IA, AppSheet, WordPress, GitHub.</p>
+    <p><strong>Blandas:</strong> Atención al detalle, comunicación escrita, trabajo remoto, resolución de problemas.</p>
+  </div>
 
   <script>
     const text = "Inicializando entorno de desarrollo...";
@@ -267,16 +412,23 @@
       document.getElementById('loader').classList.add('fade-out');
       document.getElementById('main').classList.add('show');
     });
-    function generatePDF() {
-      const element = document.getElementById('cvContent');
+
+    /* GENERADOR DE PDF HARVARD ATS (Toma la plantilla oculta y la exporta limpia) */
+    function generateHarvardPDF() {
+      const element = document.getElementById('harvardTemplate');
+      element.style.display = 'block'; // Mostrar temporalmente para el generador
+
       const opt = {
-        margin: 0.5,
-        filename: 'CV_Anuar_Perez.pdf',
+        margin: [0.3, 0.4, 0.3, 0.4],
+        filename: 'CV_Harvard_Anuar_Perez.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#05060a' },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
-      html2pdf().set(opt).from(element).save();
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        element.style.display = 'none'; // Volver a ocultar en la página web
+      });
     }
   </script>
 </body>
