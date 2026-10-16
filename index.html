@@ -7,7 +7,6 @@
   <title>CV - Anuar de Jesús Pérez Villadiego | Desarrollador Web Junior</title>
   <link rel="icon" href="https://i.ibb.co/ZzLQMDfY/desarrollo-web.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     :root{
       --bg:#05060a; --card:#0b1020; --accent1:#6ee7b7; --accent2:#7dd3fc;
@@ -74,66 +73,75 @@
     .contact-item:last-child{border:none}
     .contact-item:hover{color:var(--accent2)}
 
-    /* ESTILOS EXCLUSIVOS PARA LA PLANTILLA HARVARD (CORREGIDO ANCHO A4) */
-    #harvardTemplate {
+    /* PLANTILLA HARVARD OCULTA EN NAVEGACIÓN WEB */
+    #harvardContainer {
       display: none;
-      background: #ffffff;
-      color: #000000;
-      font-family: 'Times New Roman', Times, serif;
-      width: 700px; /* Ancho corregido para evitar cortes */
-      box-sizing: border-box;
-      padding: 10px 15px;
-      line-height: 1.3;
     }
-    #harvardTemplate h2 {
-      font-size: 20px;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 4px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-    #harvardTemplate .h-contact {
-      text-align: center;
-      font-size: 11.5px;
-      font-family: Arial, sans-serif;
-      margin-bottom: 10px;
-      color: #222;
-    }
-    #harvardTemplate .h-section {
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: bold;
-      border-bottom: 1px solid #000;
-      margin-top: 8px;
-      margin-bottom: 4px;
-      padding-bottom: 1px;
-      letter-spacing: 0.5px;
-    }
-    #harvardTemplate p, #harvardTemplate li {
-      font-size: 11px;
-      text-align: justify;
-    }
-    #harvardTemplate ul {
-      margin-left: 15px;
-      margin-top: 2px;
-    }
-    #harvardTemplate li {
-      margin-bottom: 2px;
-    }
-    #harvardTemplate .h-item-header {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      font-size: 11.5px;
-      margin-top: 4px;
-    }
-    #harvardTemplate .h-item-sub {
-      display: flex;
-      justify-content: space-between;
-      font-style: italic;
-      font-size: 11px;
-      margin-bottom: 2px;
+
+    /* REGLAS DE IMPRESIÓN / DESCARGA PDF NATIVA */
+    @media print {
+      @page { size: A4; margin: 12mm 15mm; }
+      body, html { background: #ffffff !important; color: #000000 !important; overflow: visible !important; height: auto !important; }
+      #loader, #contactModal, #main { display: none !important; }
+      
+      #harvardContainer {
+        display: block !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-family: 'Times New Roman', Times, serif !important;
+        line-height: 1.35 !important;
+      }
+      #harvardContainer h2 {
+        font-size: 20pt;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 2pt;
+        font-weight: bold;
+      }
+      #harvardContainer .h-contact {
+        text-align: center;
+        font-size: 10.5pt;
+        font-family: Arial, sans-serif;
+        margin-bottom: 12pt;
+        color: #222222;
+      }
+      #harvardContainer .h-section {
+        font-size: 11pt;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-bottom: 1px solid #000000;
+        margin-top: 10pt;
+        margin-bottom: 4pt;
+        padding-bottom: 1pt;
+        letter-spacing: 0.5pt;
+      }
+      #harvardContainer p, #harvardContainer li {
+        font-size: 10pt;
+        line-height: 1.35;
+        text-align: justify;
+      }
+      #harvardContainer ul {
+        margin-left: 16pt;
+        margin-top: 2pt;
+      }
+      #harvardContainer li {
+        margin-bottom: 2pt;
+      }
+      #harvardContainer .h-item-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 10.5pt;
+        margin-top: 4pt;
+      }
+      #harvardContainer .h-item-sub {
+        display: flex;
+        justify-content: space-between;
+        font-style: italic;
+        font-size: 10pt;
+        margin-bottom: 2pt;
+      }
     }
   </style>
 </head>
@@ -156,7 +164,7 @@
     </div>
   </div>
 
-  <!-- VISTA WEB NORMAL -->
+  <!-- INTERFAZ WEB -->
   <main id="main">
     <div class="wrap" id="cvContent">
       <header>
@@ -174,7 +182,7 @@
           </div>
         </div>
         <div class="header-actions no-print">
-          <button class="btn btn-ghost" onclick="generateHarvardPDF()">⬇ PDF</button>
+          <button class="btn btn-ghost" onclick="window.print()">⬇ PDF</button>
           <button class="btn btn-primary" onclick="document.getElementById('contactModal').classList.add('show')">Contactar</button>
         </div>
       </header>
@@ -305,8 +313,8 @@
     </div>
   </main>
 
-  <!-- PLANTILLA HARVARD OCULTA -->
-  <div id="harvardTemplate">
+  <!-- PLANTILLA HARVARD PERFECTA PARA IMPRESIÓN/PDF -->
+  <div id="harvardContainer">
     <h2>Anuar de Jesús Pérez Villadiego</h2>
     <div class="h-contact">
       Corozal, Sucre, Colombia | +57 301 773 8791 | adjperez2003@gmail.com
@@ -333,7 +341,7 @@
       <li>Implementación de e-commerce Carpioli en WordPress con pasarelas de pagos online.</li>
     </ul>
 
-    <div class="h-item-header" style="margin-top:5px;">
+    <div class="h-item-header" style="margin-top:6pt;">
       <span>Auxiliar de Flota y Datos</span>
       <span>Ago 2024 – Feb 2025</span>
     </div>
@@ -354,14 +362,14 @@
       <li>Sistema avanzado de gestión de novedades de flota multirol. Impacto: Control centralizado de SLA, notificaciones automáticas y dashboards en tiempo real.</li>
     </ul>
 
-    <div class="h-item-header" style="margin-top:3px;">
+    <div class="h-item-header" style="margin-top:4pt;">
       <span>Fleet360 (En Producción)</span>
     </div>
     <ul>
       <li>Plataforma base corporativa para control operativo y seguimiento de talleres. Impacto: Optimización del flujo inicial de novedades y trazabilidad vehicular.</li>
     </ul>
 
-    <div class="h-item-header" style="margin-top:3px;">
+    <div class="h-item-header" style="margin-top:4pt;">
       <span>Carpioli (En Producción)</span>
     </div>
     <ul>
@@ -373,11 +381,11 @@
       <span>Tecnólogo en Análisis y Desarrollo de Software – SENA</span>
       <span>2025</span>
     </div>
-    <div class="h-item-header" style="margin-top:1px;">
+    <div class="h-item-header" style="margin-top:2pt;">
       <span>Curso de Excel Avanzado – Santander Open Academy</span>
       <span>2025</span>
     </div>
-    <div class="h-item-header" style="margin-top:1px;">
+    <div class="h-item-header" style="margin-top:2pt;">
       <span>Bachiller Académico – Institución Educativa Las Peñas</span>
       <span>2021</span>
     </div>
@@ -413,29 +421,6 @@
       document.getElementById('loader').classList.add('fade-out');
       document.getElementById('main').classList.add('show');
     });
-
-    /* GENERADOR DE PDF HARVARD ATS OPTIMIZADO SIN CORTES LATERALES */
-    function generateHarvardPDF() {
-      const element = document.getElementById('harvardTemplate');
-      element.style.display = 'block';
-
-      const opt = {
-        margin: [0.3, 0.4, 0.3, 0.4],
-        filename: 'CV_Harvard_Anuar_Perez.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-          scale: 2, 
-          backgroundColor: '#ffffff', 
-          useCORS: true,
-          windowWidth: 800
-        },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(element).save().then(() => {
-        element.style.display = 'none';
-      });
-    }
   </script>
 </body>
 </html>
